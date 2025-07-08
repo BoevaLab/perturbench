@@ -165,6 +165,7 @@ class LinearAdditive(PerturbationModel):
             logger=True,
             batch_size=len(batch),
         )
+        
         return val_loss
 
     def predict(self, batch: Batch):
