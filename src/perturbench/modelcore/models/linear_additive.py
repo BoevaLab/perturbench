@@ -166,20 +166,6 @@ class LinearAdditive(PerturbationModel):
             batch_size=len(batch),
         )
         
-        # Add evaluation metrics computation during validation
-        if batch_idx % 10 == 0:  # Compute every 10 batches to avoid slowdown
-            eval_metrics = self.compute_evaluation_metrics(
-                predicted_perturbed_expression, observed_perturbed_expression
-            )
-            for metric_name, value in eval_metrics.items():
-                self.log(
-                    f"val_{metric_name}",
-                    value,
-                    on_step=False,
-                    on_epoch=True,
-                    logger=True,
-                )
-        
         return val_loss
 
     def predict(self, batch: Batch):
